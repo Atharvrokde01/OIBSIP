@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="js/scripts.js" charset="utf-8"></script>
+    <title>Saucetyme Pizza</title>
+  </head>
+  <body>
+    <div class="container">
+      <section class="container-fluid topSection">
+        <h1>Saucetyme Pizza</h1>
+      </section>
+      <section class="container orderSection">
+        <h6>...both Sweet, & Savoury!</h6>
+        <div class="row">
+          <div class="col-md-5 right-side-container">
+            <h5>our PIZZA menu</h5>
+            <p><em>Click on your preferred pizza to see what each has to offer...!</em></p>
+            <div class="hungariaPizza">
+              <div class="imagetoggle0">
+                <img src="images/hungarian-pizza.png" width=50%>
+                <h4 class="font-weight:bold">Hungarian Pizza</h4>
+              </div>
+              <div id="dotext1" class="imagetoggle1">
+                <h4>Hungarian Pizza</h4>
+                <p>European market leading producer of high quality beef makes this pizza the latest entrant into Kenya
+                  where we give you the original toppings of the hungarian beef reared in kenyan highlands.
+                  The flavour is enhanced with East African coastal herbs for a spicy feel.
+                  from our choice crust varieties, either crispy, stuffed or gluten-Free,
+                  your blended flavour will be heavenly</p>
+              </div>
+            </div>
+            <div class="hawaiianPizza">
+              <div class="imagetoggle2">
+                <img src="images/hawaiian-pizza.png" width=50%>
+                <h4 class="font-weight:bold">Hawaiian Pizza</h4>
+              </div>
+              <div id="dotext2" class="imagetoggle3">
+                <h4>Hawaiian Pizza</h4>
+                <p>From original recipes introduced to Kenya by early Western USA settlers, this Pizza features
+                  pineapple dices and minced veal, which blends well in our cheese moose,
+                  making it spicy yet sweet. Indulge your tastebuds to a hot-sweet
+                  taste of this nature's mursh.</p>
+              </div>
+            </div>
+            <div class="chickenPizza">
+              <div class="imagetoggle4">
+                <img src="images/chicken-pizza.png" width=50%>
+                <h4 class="font-weight:bold">Chicken Periperi Pizza</h4>
+              </div>
+              <div id="dotext3" class="imagetoggle5">
+                <h4>Chicken Periperi Pizza</h4>
+                <p>Original pizza from the Pollo - read "poyo" in Spanish, Chicken... this gives pizza comes in hot spice chicken topping
+                  whose sight is a true call to a banquet. This is Saucetyme's most famous take, which leaves
+                  our patrons always ordering for more... Give it a try!</p>
+              </div>
+            </div>
+            <div class="VegetarianPizza">
+              <div class="imagetoggle6">
+                <img src="images/vegetarian-pizza.png" width=50%>
+                <h4 class="font-weight:bold">Vegetarian (Vegan) Pizza</h4>
+              </div>
+              <div id="dotext4" class="imagetoggle7">
+                <h4>Vegetarian (Vegan) Pizza</h4>
+                <p>Non-meat lovers are never left behind on our offers. This vegan pizza comes with spicy herb including Oregano,
+                  bayleaf, cumming seeds, tomatoes, onions, paprika all made together with the chef's
+                  delight. It is a great combination especially when spicy!</p>
+              </div>
+            </div>
+          </div>
+            <br>
+          <div class="col-md-7 left-side-container">
+            <h5>place your order here</h5>
+          <div class="orderProcess">
+            <p>Select the size of pizza you would like to order</p>
+            <div class="radio">
+              <label><input type="radio" name="size" value="small" checked>small Size</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="size" value="medium">Medium Size</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="size" value="large">Large Size</label>
+            </div>
+            <p>Select the topping you would like to have on your pizza</p>
+            <div class="radio">
+              <label><input type="radio" name="topping" value="vegetarian" checked>Vegetarian</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="topping" value="chicken-periperi">Chiken Peri Peri</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="topping" value="hungarian-beef">hungarian Beef</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="topping" value="hawaiian">Hawaiian</label>
+            </div>
+            <p>Select the crust or base you would like to have on your pizza</p>
+            <div class="radio">
+              <label><input type="radio" name="crust" value="crispy" checked>Crispy</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="crust" value="stuffed">Stuffed</label>
+            </div>
+            <div class="radio">
+              <label><input type="radio" name="crust" value="gluten-free">Gluten Free</label>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="container contactsSection">
+        <h2>Contacts</h2>
+      </section>
+    </div>
+  </body>
+</html>
