@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Converter</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(https://2.bp.blogspot.com/-S99x6KMOx84/UQ-5IlRgbyI/AAAAAAAASUg/vl0UbMlYnyM/s1600/Sky+Photos+and+Wallpapers+04.jpg);
+            color: #222;
+            font-size: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+
+        }
+
+        .mobile {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .temperature-converter {
+            background: #f6f6f6;
+            border-radius: 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px 35px 55px;
+            min-width: 320px;
+            width: 100%;
+            height: auto;
+            box-shadow: 5px 5px 250px 0px rgba(255, 255, 255, 0.02) inset;
+            backdrop-filter: blur(500px);
+
+        }
+
+        .title {
+            color: #222;
+            font-size: 2rem;
+            text-align: center;
+            font-family: cursive;
+        }
+
+        .result {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .result-heading {
+            color: #555;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .celsius-value {
+            border-bottom: 2px solid #ccc;
+            padding: 10px;
+            transition: all .45s ease;
+        }
+
+        label {
+            color: #555;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            background: transparent;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #ccc;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        input:focus {
+            border: 1px solid #4c49f3;
+        }
+
+        .degree-type {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .degree-field {
+            display: flex;
+            flex-direction: column;
+            width: 46%;
+        }
+
+        option {
+            background-color: #1b62de;
+            color: #f6f6f6;
+        }
+
+        #convert-btn {
+            background: linear-gradient(to bottom, #33b6f3, #053383);
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            color: #f6f6f6;
+            cursor: pointer;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            padding: 12px 80px;
+            transition: all 0.3s ease-in;
+        }
+
+        #convert-btn:hover {
+            background: linear-gradient(to bottom, #4a47e7, #322fda);
+        }
+
+        /* Add a right margin to each icon */
+
+        .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        }
+
+        .loading {
+            display: none;
+        }
+    </style>
+    <!-- css link -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- box icons -->
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body background="https://wallpapercave.com/wp/wp6946237.jpg">
+    <div class="container">
+        <div class="temperature-converter">
+            <div class="mobile">
+                <p class="time">9.41 AM</p>
+                <div>
+                    <i class='bx bx-signal-4'></i>
+                    <i class='bx bx-wifi'></i>
+                    <i class='bx bxs-battery'></i>
+                </div>
+            </div>
+
+            <h1 class="title">Temperature Converter</h1>
+
+            <div class="result">
+                <span class="result-heading">Result (Celsius)</span>
+                <h2 class="celsius-value" id="celsius"></h2>
+            </div>
+
+            <!-- input field -->
+            <div class="degree-type">
+                <!-- for degrees -->
+                <div class="degree-field">
+                    <label for="degree">Degrees</label>
+                    <input type="number" name="degree" id="degree" />
+                </div>
+
+                <!-- for option selection -->
+                <div class="temp-field">
+                    <label for="temp-type">Type</label>
+                    <select name="temperatures" id="temp-type" autocomplete="on">
+                        <option id="fahrenheit" value="fahrenheit">Fahrenheit</option>
+                        <option id="kelvin" value="kelvin">Kelvin</option>
+                    </select>
+                </div>
+            </div>
+            <button id="convert-btn">Convert</button>
+
+        </div>
+    </div>
+    <!-- script tags -->
+    <script>
+        const celsiusField = document.querySelector("#celsius");
+        const degree = document.querySelector("#degree");
+        const convertBtn = document.querySelector("#convert-btn");
+        const tempType = document.querySelector("#temp-type");
+
+        window.addEventListener("load", () => {
+            degree.value = "";
+            celsiusField.innerHTML = "";
+        });
+
+        if (degree.value === "") {
+            convertBtn.setAttribute("disabled", "");
+            setTimeout(() => {
+                convertBtn.removeAttribute('disabled');
+            }, 4000);
+        }
+
+
+        convertBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            convertToCelsius();
+            convertBtn.innerHTML = "<span class='icon'><i class='fa fa-spinner fa-spin'></i> Converting...</span>";
+            setTimeout(() => {
+                convertBtn.innerHTML = "<span>Convert</span>"
+            }, 1000);
+        });
+
+        function convertToCelsius() {
+            let inputValue = degree.value;
+
+            setTimeout(() => {
+                if (tempType.value === "fahrenheit") {
+                    const FahrenheitToCelsius = (inputValue - 32) * (5 / 9);
+                    celsiusField.innerHTML = `${FahrenheitToCelsius.toFixed(3)} &deg;c`;
+                } else if (tempType.value === "kelvin") {
+                    const KelvinToCelsius = inputValue - 273.15;
+                    celsiusField.innerHTML = `${KelvinToCelsius.toFixed(3)} &deg;c`;
+                }
+            }, 1200)
+        }
+
+    </script>
+</body>
+
+</html>
