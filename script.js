@@ -1,78 +1,37 @@
-function getHistory(){
-	return document.getElementById("history-value").innerText;
+let items = [];
+
+function addItem() {
+    let item = document.getElementById("item").value;
+    if (item !== "") {
+        items.push(item);
+        displayList();
+        document.getElementById("item").value = "";
+    }
 }
-function printHistory(num){
-	document.getElementById("history-value").innerText=num;
+
+function displayList() {
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+    for (let i = 0; i < items.length; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = items[i];
+        let deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "Delete";
+        deleteButton.classList.add("delete");
+        deleteButton.addEventListener("click", function() {
+            items.splice(i, 1);
+            displayList();
+        });
+        li.appendChild(deleteButton);
+        list.appendChild(li);
+    }
 }
-function getOutput(){
-	return document.getElementById("output-value").innerText;
-}
-function printOutput(num){
-	if(num==""){
-		document.getElementById("output-value").innerText=num;
-	}
-	else{
-		document.getElementById("output-value").innerText=getFormattedNumber(num);
-	}	
-}
-function getFormattedNumber(num){
-	if(num=="-"){
-		return "";
-	}
-	var n = Number(num);
-	var value = n.toLocaleString("en");
-	return value;
-}
-function reverseNumberFormat(num){
-	return Number(num.replace(/,/g,''));
-}
-var operator = document.getElementsByClassName("operator");
-for(var i =0;i<operator.length;i++){
-	operator[i].addEventListener('click',function(){
-		if(this.id=="clear"){
-			printHistory("");
-			printOutput("");
-		}
-		else if(this.id=="backspace"){
-			var output=reverseNumberFormat(getOutput()).toString();
-			if(output){//if output has a value
-				output= output.substr(0,output.length-1);
-				printOutput(output);
-			}
-		}
-		else{
-			var output=getOutput();
-			var history=getHistory();
-			if(output==""&&history!=""){
-				if(isNaN(history[history.length-1])){
-					history= history.substr(0,history.length-1);
-				}
-			}
-			if(output!="" || history!=""){
-				output= output==""?output:reverseNumberFormat(output);
-				history=history+output;
-				if(this.id=="="){
-					var result=eval(history);
-					printOutput(result);
-					printHistory("");
-				}
-				else{
-					history=history+this.id;
-					printHistory(history);
-					printOutput("");
-				}
-			}
-		}
-		
-	});
-}
-var number = document.getElementsByClassName("number");
-for(var i =0;i<number.length;i++){
-	number[i].addEventListener('click',function(){
-		var output=reverseNumberFormat(getOutput());
-		if(output!=NaN){ //if output is a number
-			output=output+this.id;
-			printOutput(output);
-		}
-	});
-}
+
+document.getElementById("add").addEventListener("click", addItem);
+document.getElementById("item").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        addItem();
+    }
+});
+
+displayList();
