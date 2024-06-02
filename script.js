@@ -1,37 +1,35 @@
-let items = [];
+var count = 2;
 
-function addItem() {
-    let item = document.getElementById("item").value;
-    if (item !== "") {
-        items.push(item);
-        displayList();
-        document.getElementById("item").value = "";
-    }
+function validate ()
+{
+   var user = document.login.username.value;
+   var password = document.login.password.value;
+   var valid = false;
+   var usernameArray = ["yuki"]
+   var passwordArray = ["123"]
+   for (var i = 0; i < usernameArray.length; i++)
+
+if (user == usernameArray[i])
+if (password == passwordArray [i])
+{
+   valid = true;
+   break;
 }
 
-function displayList() {
-    let list = document.getElementById("list");
-    list.innerHTML = "";
-    for (let i = 0; i < items.length; i++) {
-        let li = document.createElement("li");
-        li.innerHTML = items[i];
-        let deleteButton = document.createElement("button");
-        deleteButton.innerHTML = "Delete";
-        deleteButton.classList.add("delete");
-        deleteButton.addEventListener("click", function() {
-            items.splice(i, 1);
-            displayList();
-        });
-        li.appendChild(deleteButton);
-        list.appendChild(li);
-    }
+if(valid)
+{
+   alert("Login was successful");
+   window.location = "wwww.google.ie"
+   return false ;
 }
-
-document.getElementById("add").addEventListener("click", addItem);
-document.getElementById("item").addEventListener("keydown", function(e) {
-    if (e.key === "Enter") {
-        addItem();
-    }
-});
-
-displayList();
+var again = "tries";
+if (count ==1)
+{
+   again = "try"
+}
+if(count >= 1)
+{
+   alert("Wrong password or username")
+   count--;
+}
+}
